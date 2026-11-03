@@ -172,13 +172,17 @@ const IDS = {
     "kiss": "sow-pout.jpg",     
     "hearts": "sow-love.jpg",   
 
-    // --- NEW EYE TRACKING IMAGES ---
+    // --- NEW PHYSICS REACTIONS ---
+    "shock": "sow-shock.jpg",
+    "dizzy": "sow-dizzy.jpg",
+    "ouch": "sow-pain.jpg",    // Maps the engine's "ouch" to your "sow-pain.jpg"
+
+    // --- EYE TRACKING ---
     "left": "sow-left.jpg",
     "right": "sow-right.jpg",
     "up": "sow-up.jpg",
     "down": "sow-down.jpg",
 
-    // --- MAPPED DIAGONALS (Reusing your 4 images) ---
     "upright": "sow-up.jpg",
     "downright": "sow-down.jpg",
     "downleft": "sow-down.jpg",
@@ -193,9 +197,8 @@ const IDS = {
 
     // --- FALLBACKS ---
     "closed": "sow-rest.jpg", "half": "sow-rest.jpg", 
-    "shock": "sow-rest.jpg", "dizzy": "sow-rest.jpg", "deadpan": "sow-rest.jpg",
-    "ouch": "sow-rest.jpg", "sick": "sow-rest.jpg", "scared": "sow-rest.jpg",
-    "shy": "sow-rest.jpg", "cry": "sow-rest.jpg"
+    "deadpan": "sow-rest.jpg", "sick": "sow-rest.jpg", 
+    "scared": "sow-rest.jpg", "shy": "sow-rest.jpg", "cry": "sow-rest.jpg"
   };
 
   const OVER = 1.7, N = 72, M = N + 1, SPAN = OVER / N, ORIGIN = .5 - OVER / 2;
@@ -469,6 +472,13 @@ const load = name => new Promise(res => {
     b.addEventListener('pointerenter', () => { moodFace = 'hearts'; moodUntil = performance.now() + 1e7; });
     b.addEventListener('pointerleave', () => { moodFace = 'grin'; moodUntil = performance.now() + 700; });
   });
+
+  // Make the top navigation links trigger the "wow" face
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('pointerenter', () => { moodFace = 'wow'; moodUntil = performance.now() + 1e7; });
+    link.addEventListener('pointerleave', () => { moodFace = 'rest'; moodUntil = performance.now() + 700; });
+  });
+
   let lastScroll = scrollY, scrollUntil = 0;
   addEventListener('scroll', () => { const n = performance.now(); if (Math.abs(scrollY - lastScroll) > 2) { scrollUntil = n + 500; lastScroll = scrollY; } wake(n); }, {passive: true});
 
