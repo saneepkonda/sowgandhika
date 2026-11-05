@@ -83,6 +83,39 @@
   .marquee-tile { width: 420px; height: 270px; flex-shrink: 0; border-radius: 16px; object-fit: cover; }
 
   .project-card-wrapper { height: 85vh; }
+.hero-portrait-wrap {
+    position: absolute;
+    left: 50%;
+    top: 55%; /* Slightly higher on mobile to balance the screen */
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 90vw; /* NEW: Shrinks to fit mobile screens perfectly */
+    max-width: 400px;
+    touch-action: none; /* NEW: Stops the page from scrolling when dragging the face */
+}
+
+@media (min-width: 640px) {
+    .hero-portrait-wrap {
+        width: 500px;
+        top: 59%;
+        touch-action: pan-y; /* Restores normal scrolling for laptops */
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-portrait-wrap {
+        width: 600px;
+        top: 60%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-portrait-wrap {
+        width: clamp(640px, 78vh, 46vw);
+        top: 60%;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -97,9 +130,12 @@
       <a href="#contact" class="hover:opacity-70 transition-opacity duration-200">Contact</a>
     </nav>
     <div class="overflow-hidden mt-6 sm:mt-4 md:-mt-5">
-      <h1 class="hero-heading text-[10vw] sm:text-[10vw] md:text-[6vw] lg:text-[9.8vw] font-black uppercase tracking-tight leading-none whitespace-nowrap w-full fade-in" style="--fade-y: 40px;" data-delay="150"> Hi, i&apos;m Sowgandhika
+      <!-- <h1 class="hero-heading text-[10vw] sm:text-[10vw] md:text-[6vw] lg:text-[9.8vw] font-black uppercase tracking-tight leading-none whitespace-nowrap w-full fade-in" style="--fade-y: 40px;" data-delay="150"> Hi, i&apos;m Sowgandhika
 
-      </h1>
+      </h1> -->
+
+      <h1 class="hero-heading text-[13vw] sm:text-[10vw] md:text-[6vw] lg:text-[9.8vw] font-black uppercase tracking-tight leading-none w-full fade-in" style="--fade-y: 40px;" data-delay="150"> 
+  Hi, I'm <br class="block sm:hidden" /> Sowgandhika </h1>
 
     </div>
     
